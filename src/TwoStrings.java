@@ -7,15 +7,12 @@ import java.io.*;
 public class TwoStrings {
 
     static String twoStrings(String s1, String s2){
-        System.out.println("s1 - " + s1.length() + ". s2 - " + s2.length());
-        String tmp;
-        if (s2.length() > s1.length()){
-            tmp = s2;
-            s2 = s1;
-            s1 = tmp;
+        String s1chars = "";
+        for (int i = 0; i < s1.length(); i++) {
+            if (s1chars.indexOf(s1.charAt(i)) == -1) s1chars += s1.charAt(i);
         }
-        for ( int i = 0; i < s1.length(); i++ ) {
-            if (s2.indexOf( s1.charAt( i )) >= 0) return "YES";
+        for ( int i = 0; i < s1chars.length(); i++ ) {
+            if (s2.indexOf( s1chars.charAt( i )) >= 0) return "YES";
         }
         return "NO";
     }
