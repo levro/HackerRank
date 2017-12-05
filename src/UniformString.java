@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class UniformString {
 
@@ -9,9 +6,7 @@ public class UniformString {
         Scanner in = new Scanner(System.in);
         String s = in.next();
         int n = in.nextInt();
-        long st = System.currentTimeMillis();
-
-        List<Integer> U = new ArrayList<>();
+        Set<Integer> U = new HashSet<>();
 
         int weight = 0;
         char current;
@@ -25,8 +20,7 @@ public class UniformString {
         }
         for(int a0 = 0; a0 < n; a0++){
             int x = in.nextInt();
-            System.out.println("Test #" +a0 + " - " + (U.contains(x) ? "Yes" : "No"));
+            System.out.println(U.contains(x) ? "Yes" : "No");
         }
-        System.out.println("программа выполнялась " + (System.currentTimeMillis() - st) + " миллисекунд");
     }
 }
