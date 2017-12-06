@@ -8,7 +8,19 @@ public class InsertionSortAdvancedAnalysis {
         for (int len_sorted = 2; len_sorted <= len; len_sorted++) {
             int inserting = ar[len_sorted - 1];
             long subcount = 0;
-            for (int j = 1 ; j <= len_sorted; j++) {
+            int up = 1;
+            int step = len_sorted/2 + 1;;
+            int j = 0;
+            do {
+                j = j + step * up;
+                if (inserting > ar[j]) up = 1;
+                else up = -1;
+                step = step/2;
+
+
+                if (j < len_sorted/2 && inserting < ar[len_sorted/2]){
+                    j = len_sorted/2;
+                }
                 if (j != len_sorted && inserting < ar[len_sorted - j - 1]){
                     ar[len_sorted - j] = ar[len_sorted - j - 1];
                 }
@@ -18,7 +30,13 @@ public class InsertionSortAdvancedAnalysis {
                     j = len_sorted;
                 }
                 count += subcount;
-            }
+            }while (ar[j] <= inserting && inserting <= ar[j+1]);
+
+            subcount = len_sorted - j;
+
+            ar[j] = inserting;
+
+
         }
         System.out.println(count);
     }
