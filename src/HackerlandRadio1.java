@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class HackerlandRadio {
+public class HackerlandRadio1 {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
@@ -14,6 +14,16 @@ public class HackerlandRadio {
         Arrays.sort( x );
         String city = ".";
         String cityN = "";
+        System.out.println(Arrays.toString( x ));
+/*        System.out.println();
+        for ( int i = 1; i <= x[x.length - 1]; i++ ) {
+            if ( Arrays.binarySearch(x, i) >= 0 ) city += "||||.";
+            else city += "____.";
+            if (i < 10) cityN += "  0" + i + " ";
+            else cityN += "  " + i + " ";
+        }
+        System.out.println(city);
+        System.out.println(cityN);*/
 
         List<Integer> rad = new ArrayList<>();
 
@@ -38,8 +48,15 @@ public class HackerlandRadio {
             rad.add( x[radio] );
         }
 
+/*        for ( int i = 1; i < rad.size(); i++ ) {
+            if (rad.get(i-1) == rad.get(i)) rad.remove(i);
+        }*/
 
         System.out.println(rad.size());
+        System.out.println();
+        for ( Integer a : rad) {
+            System.out.print("" + a + " ");
+        }
 
     }
 }
