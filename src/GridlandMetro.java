@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class GridlandMetro {
     public static void main(String[] args) {
@@ -7,26 +7,33 @@ public class GridlandMetro {
         int rows = in.nextInt();
         int columns = in.nextInt();
         int tracks = in.nextInt();
-        int[][] gridLand = new int[rows][columns];
-        int count = 0;
+
+        int[][] gridLand = new int[tracks][3];
+        long count = 0;
         for ( int j = 0; j < tracks; j++ ) {
-            int trackRow = in.nextInt() - 1;
-            int start = in.nextInt() - 1;
-            int end = in.nextInt() - 1;
-            for (int i = 0; i <= end - start; i++) {
-                gridLand[trackRow][start + i] = 1;
+            gridLand[j][0] = in.nextInt();
+            gridLand[j][1] = in.nextInt();
+            gridLand[j][2] = in.nextInt();
             }
-            count += end - start + 1;
+
+        Arrays.sort(gridLand, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                return Integer.compare(o1[0], o2[0]);
+            }
+        });
+
+        for (int i = 0; i < tracks; i++) {
+            System.out.println(Arrays.toString(gridLand[i]));
         }
 
-        System.out.println("Lampposts: " + (rows * columns - count));
 
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++) {
-                System.out.print(gridLand[i][j] + " ");
-            }
-            System.out.println();
-        }
 
+
+
+
+
+
+/*       System.out.println("Lampposts: " + (rows * columns - count));*/
     }
 }
