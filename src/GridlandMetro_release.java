@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class GridlandMetro {
+public class GridlandMetro_release {
     public static void main(String[] args) {
 
         Scanner in = new Scanner( System.in);
@@ -14,18 +14,15 @@ public class GridlandMetro {
             gridLand[j][0] = in.nextInt();
             gridLand[j][1] = in.nextInt();
             gridLand[j][2] = in.nextInt();
-            }
-
+        }
+        long start = System.currentTimeMillis();
         Arrays.sort(gridLand, new Comparator<int[]>() {
             @Override
             public int compare(int[] o1, int[] o2) {
                 return Integer.compare(o1[0], o2[0]);
             }
         });
-
-        for (int i = 0; i < tracks; i++) {
-            System.out.println(Arrays.toString(gridLand[i]));
-        }
+        long middle = System.currentTimeMillis();
         int previousRowNo = -1;
         List<String> uTracks = new ArrayList<>();
 
@@ -35,18 +32,16 @@ public class GridlandMetro {
             }
             previousRowNo = trk[0];
             uTracks.set(uTracks.size() - 1, putTrack(uTracks.get(uTracks.size() - 1), trk[1], trk[2]));
-        }
-
-        for (String s : uTracks) {
-            System.out.println(s);
+            //System.out.println("+1");
         }
 
         for (String s : uTracks) {
             count += countOnes(s);
         }
 
-        long lampposts = columns * rows - count;
+        long lampposts = (long)columns * (long)rows - count;
         System.out.println(lampposts);
+        System.out.println("программа выполнялась " + (middle - start) + " + " + (System.currentTimeMillis() - middle) + " миллисекунд");
 
     }
 
