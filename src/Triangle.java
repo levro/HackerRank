@@ -1,38 +1,32 @@
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class Triangle {
     public static void main( String[] args ) {
         Scanner in = new Scanner( System.in);
         int n = in.nextInt();
-        int[] stick = new int[n];
+        Integer[] stick = new Integer[n];
         for(int i=0; i < n; i++){
             stick[i] = in.nextInt();
         }
+        Arrays.sort(stick, Collections.reverseOrder());
+
         System.out.println(Arrays.toString( stick ));
 
-        List<int[]> tri = new ArrayList<>(  );
-
-        for ( int i = 0; i < n - 2; i++ ) {
-            for ( int j = 1; j < n - 1; j++ ) {
-                for ( int k = 2; k < n; k++ ) {
-                    if (i != j & j != k && i != k){
-                        if (triNorm(stick[i], stick[j], stick[k])){
-                            tri.add( new int[]{stick[i], stick[j], stick[k]} );
-                        }
+        boolean found = false;
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                for (int k = j + 1; k < n; k++) {
+                    if (triNorm(stick[i], stick[j], stick[k])){
+                        System.out.println(stick[k] + " " + stick[j] + " " + stick[i]);
+                        found = true;
+                        i = n;
+                        j = n;
+                        k = n;
                     }
                 }
             }
         }
-        for ( int[] tr : tri) {
-            System.out.println( Arrays.toString( tr ));
-        }
-
-
-
-
-
-
+        if (!found) System.out.println(-1);
     }
 
     private static boolean triNorm( int a, int b, int c ) {
