@@ -13,53 +13,22 @@ public class FlippingMatrix {
                     matrix[i][j] = in.nextInt();
                 }
             }
-            for ( int i = 0; i < 2 * n; i++ ) {
-                System.out.println( Arrays.toString( matrix[i] ) );
-            }
 
-            for ( int i = n; i < 2 * n; i++ ) {
-                matrix[i] = max2left(matrix[i]);
-            }
+            int[][] bestMatrix = new int[n][n];
 
             for ( int i = 0; i < n; i++ ) {
-                int[] column = new int[2 * n];
-                for ( int j = 0; j < 2 * n; j++ ) {
-                    column[j] = matrix[j][i];
-                }
-                column = max2left( column );
-                for ( int j = 0; j < 2 * n; j++ ) {
-                    matrix[j][i] = column[j];
+                for ( int j = 0; j < n; j++ ) {
+                    bestMatrix[i][j] = Math.max( Math.max( matrix[i][j], matrix[2*n - i - 1][j] ), Math.max( matrix[2*n - i - 1][2*n - j - 1],  matrix[i][2*n - j - 1] ) );
                 }
             }
-            for ( int i = 0; i < n; i++ ) {
-                matrix[i] = max2left(matrix[i]);
+            int sum = 0;
+
+            for ( int[] row : bestMatrix) {
+                for ( int a : row) {
+                    sum += a;
+                }
             }
-            System.out.println();
-
-            for ( int i = 0; i < 2 * n; i++ ) {
-                System.out.println( Arrays.toString( matrix[i] ));
-            }
-
-
+            System.out.println(sum);
         }
-    }
-
-    private static int[] max2left( int[] row ) {
-        int left  = 0;
-        int right = 0;
-        int n = row.length;
-        for ( int i = 0; i < n / 2; i++ ) {
-            left  += row[i];
-            right += row[n - i - 1];
-        }
-        if (left < right){
-            int tmp;
-            for ( int i = 0; i < n / 2; i++ ) {
-                tmp = row[i];
-                row[i] = row[n - i - 1];
-                row[n - i - 1] = tmp;
-            }
-        }
-        return row;
     }
 }
