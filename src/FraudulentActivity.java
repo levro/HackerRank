@@ -12,9 +12,6 @@ public class FraudulentActivity {
             System.arraycopy( expenditure, i, five, 0, d );
             int med = mediane( five );
             if (expenditure[i + d] >= med * 2) noti++;
-            if ( i % 10000 == 0 ) {
-                System.out.print(".");
-            }
 
         }
         return noti;
