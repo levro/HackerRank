@@ -16,7 +16,6 @@ public class GemStones {
             }
             if (flag){
                 counter++;
-                System.out.println(a);
             }
         }
         return counter;
