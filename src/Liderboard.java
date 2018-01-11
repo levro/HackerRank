@@ -6,7 +6,7 @@ public class Liderboard {
         int[] res = new int[alice.length];
         List<Integer> sc = new ArrayList<>();
         for (int i = 0; i < scores.length; i++) {
-            if (i != 0 && scores[i] != scores[i - 1]) sc.add(scores[i]);
+            if (i == 0 || scores[i] != scores[i - 1]) sc.add(scores[i]);
         }
 
         int[] scr = new int[sc.size()];
@@ -15,17 +15,10 @@ public class Liderboard {
         }
 
         for (int i = 0; i < alice.length; i++) {
-
-            if
-
             int aliceRank = 1;
-            for (int j = 0; j < scores.length; j++) {
-                if (alice[i] >= scores[j]){
-                    break;
-                }
-
-                if (j > 0 && scores[j] < scores[j - 1]) aliceRank++;
-
+            for (int j = 0; j < scr.length; j++) {
+                if (alice[i] >= scr[j]) break;
+                aliceRank++;
             }
             res[i] = aliceRank;
         }
