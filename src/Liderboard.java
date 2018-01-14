@@ -16,6 +16,15 @@ public class Liderboard {
 
         for (int i = 0; i < alice.length; i++) {
             int aliceRank = 1;
+            if (alice[i] < scr[scr.length - 1]){
+                res[i] = scr.length + 1;
+                continue;
+            }
+            else if (alice[i] > scr[0]){
+                res[i] = 1;
+                continue;
+            }
+
             for (int j = 0; j < scr.length; j++) {
                 if (alice[i] >= scr[j]) break;
                 aliceRank++;
